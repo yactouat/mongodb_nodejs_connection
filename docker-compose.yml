@@ -1,0 +1,15 @@
+# creating a volume here allows us to persist data even if the container is deleted
+volumes:
+  mongodb_data:
+
+services:
+  mongodb:
+    # pulling an image from hub.docker.com
+    image: mongo:6.0.7
+    restart: always
+    ports:
+      # binding to the localhost (left-hand side) and the container (right-hand side) ports
+      - 27017:27017
+    # attaching the volume to the container
+    volumes:
+      - mongodb_data:/data/db
